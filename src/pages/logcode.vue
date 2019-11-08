@@ -3,16 +3,17 @@
 		<div id="form-groupc">
 			<div class="form-groupzc">
 				<img src="../assets/images/logo.png" class="form-logoc" alt="" />
-				<div class="input-groupphoc"><el-input v-model="input" placeholder="请输入手机号" id="input-phonec"></el-input></div>
+				<p style="color: red; position: absolute; top:1rem" v-show="xianshipwd">{{promptpwd}}</p>
+				<div class="input-groupphoc"><el-input v-model="inputphonen" @focus="outfoucen" placeholder="请输入手机号" id="input-phonec"></el-input></div>
 				<div class="input-grouppawc">
-					<el-input v-model="input" placeholder="请输入密码" id="input-pawc"></el-input>
+					<el-input v-model="inputpwd" placeholder="请输入密码" @focus="outfoucen" id="input-pawc"></el-input>
 					<p id="input-codec">忘记密码</p>
 				</div>
 				<div class="input-groupbottomc">
 					<router-link to="/home"><span class="touristc">游客登录</span></router-link>
 					<router-link to="/"><span class="switchpawc">切换至验证码登录</span></router-link>
 				</div>
-				<div class="input-buttonc">登录</div>
+				<div class="input-buttonc" @click="login()">登录</div>
 				<div class="form-footerc">
 					<span class="form-footer1c">还没有账号 ?</span>
 					<router-link to="/register"><span class="form-footer2c">立即注册</span></router-link>
@@ -22,14 +23,42 @@
 	</div>
 </template>
 <script>
+	import api from '@/api/api.js'
+	import axios from 'axios'
 export default {
 	data() {
 		return {
-			input: ''
+			inputphonen: '',	//手机号
+			inputpwd:'',	//密码
+			promptpwd:"123",	//友情提示
+			xianshipwd:false,	//是否显示友情提示
 		};
 	},
 	mounted() {
 		this.$eventbus.$emit('headershowey');
+	},
+	methods:{
+		//失焦事件
+		outfoucen(){
+			this.xianshipwd=false;
+		},
+		//登录
+		login(){
+			if(this.inputphonen =='' || this.inputpwd==''){
+				this.promptpwd="请仔细填写...";
+				this.xianshipwd=true;
+				return;
+			}
+			axios.get(api.Login+"?username="+this.inputphonen+"&password="+this.inputpwd).then(result=>{
+				if(result.data.code!=0){
+					this.promptpwd=result.data.msg;
+					this.xianshipwd=true;
+					return;
+				}
+				this.$router.push("/home");
+				localStorage.setItem("phone",this.inputphonen)
+			})
+		}
 	}
 };
 </script>

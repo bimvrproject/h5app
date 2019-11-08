@@ -4,6 +4,9 @@ const version = global.url + "/v" + global.version;
 const checkVersion = global.url; //版本检查
 const api = {
   Login: version + "/user/login",
+  GetPhone:version+"/user/register",  //判断手机号是否已注册
+  PhoneLogin:version+"/user/phoneLogin",  //手机验证码登录
+  LogincheckSmsCode:version+"/user/LogincheckSmsCode",   //判断手机号和验证码是否正确  完成的登录
   GetProject: version + "/userProject/getProject",
   ChangePwd: version + "/user/changePwd",
   GetResModel: version + "/userProject/getResModel",
