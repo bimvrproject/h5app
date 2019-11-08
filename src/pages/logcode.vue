@@ -154,7 +154,7 @@ export default {
 		}
 		// 还没有账号？立即注册
 		.form-footerc {
-			width: 1.63rem;
+			// width: 1.63rem;
 			height: 0.2rem;
 			// position: absolute;
 			// top: 3.44rem;

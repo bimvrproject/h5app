@@ -154,7 +154,7 @@ export default {
 		}
 		// 还没有账号？立即注册
 		.form-footer {
-			width: 1.63rem;
+			// width: 1.63rem;
 			height: 0.2rem;
 			// position: absolute;
 			// top: 3.44rem;
@@ -163,6 +163,7 @@ export default {
 			display: flex;
 			justify-content: space-between;
 			line-height: 0.2rem;
+			// background:red;
 			.form-footer1 {
 				font-family: Microsoft YaHei;
 				font-weight: 400;
