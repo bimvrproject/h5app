@@ -4,7 +4,7 @@
 			<div class="topleft">
 				<div class="topleft-imgbox"><img src="" alt="" /></div>
 				<div class="topleft-login">
-					<p class="topleft-logintop" v-show="loginphone">18306846355</p>
+					<p class="topleft-logintop" v-show="loginphone">{{phone}}</p>
 					<div class="topleft-loginbtom" v-show="loginphone">
 						<p><i class="loginvip">黄金会员</i></p>
 						<p class="loginvipimg"><img class="leftvip" src="../assets/images/vipleft.png" alt="" /></p>
@@ -29,8 +29,12 @@
 export default {
 	data(){
 		return{
-			loginphone:false
+			loginphone:true,
+			phone:"",
 		}
+	},
+	created() {
+		this.phone=localStorage.getItem("phone")
 	}
 };
 </script>
