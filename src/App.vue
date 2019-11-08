@@ -1,37 +1,50 @@
 <template>
-  <div id="app" style="height: 100%; background-color: #F0F0F0;">
-    <router-view />
-  </div>
+	<div class="container">
+		<Header class="header" v-show="headershow"></Header>
+		<router-view class="main"></router-view>
+	</div>
 </template>
 
 <script>
+import Header from './components/Header';
 export default {
-  mounted() {
-    // 关闭浏览器窗口的时候清空浏览器缓存在localStorage的数据
-    window.onbeforeunload = function(e) {
-      var storage = window.localStorage;
-      storage.clear();
-    };
-  }
+	data() {
+		return {
+			headershow: false
+		};
+	},
+	//2.注册
+	components: {
+		Header
+	},
+	created(){
+		this.$eventbus.$on('headershowx', () => {
+			this.headershow = true;
+		});
+		this.$eventbus.$on('headershowey', () => {
+			this.headershow = false;
+		});
+	},
+	mounted() {
+		this.$eventbus.$emit('headershowy')
+	},
 };
 </script>
-
-<style lang="less">
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+<style lang="scss">
+.container {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	background:url(assets/images/big.png) no-repeat no-repeat;
+	background-size:100% 100%;
+	.header {
+		height: 0.55rem;
+		background: url(assets/images/headerbig1.png) no-repeat;
+		background-size: 100% 0.6rem;
+	}
+	.main {
+		flex: 1;
+		// background: pink;
+	}
 }
 </style>
