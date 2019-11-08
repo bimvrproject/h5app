@@ -138,6 +138,7 @@ export default {
 		line-height: 0.443rem;
 		background: url(../assets/images/denglu.png) no-repeat;
 		background-size: 2.33rem 0.443rem;
+		
 	}
 }
 }
