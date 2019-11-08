@@ -1,6 +1,8 @@
 <template>
 	<div>
-		
+		 <div class="home-group">
+			 
+		 </div>
 	</div>
 </template>
 
@@ -16,7 +18,7 @@ export default {
 		
 	},
 	created(){
-		
+		 
 	},
 	mounted() {
 		this.$eventbus.$emit('headershowx')
@@ -25,5 +27,4 @@ export default {
 </script>
 
 <style>
-	
 </style>
