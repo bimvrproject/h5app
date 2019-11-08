@@ -4,11 +4,12 @@
 			<div class="topleft">
 				<div class="topleft-imgbox"><img src="" alt="" /></div>
 				<div class="topleft-login">
-					<p class="topleft-logintop">18306846355</p>
-					<div class="topleft-loginbtom">
+					<p class="topleft-logintop" v-show="loginphone">18306846355</p>
+					<div class="topleft-loginbtom" v-show="loginphone">
 						<p><i class="loginvip">黄金会员</i></p>
 						<p class="loginvipimg"><img class="leftvip" src="../assets/images/vipleft.png" alt="" /></p>
 					</div>
+					<div class="please-login" v-show="!loginphone">请登录</div>
 				</div>
 			</div>
 			<div class="topright">
@@ -25,7 +26,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+	data(){
+		return{
+			loginphone:false
+		}
+	}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -54,7 +61,7 @@ export default {};
 		.topleft-login {
 			display: flex;
 			width: 1.23rem;
-			height: 0.36rem;
+			height: 0.38rem;
 			// background:pink;
 			flex-direction: column;
 			justify-content: space-between;
@@ -72,6 +79,7 @@ export default {};
 				width: 0.79rem;
 				display: flex;
 				justify-content: space-between;
+				// background:red;
 				// margin-top:-0.02rem;
 				.loginvip {
 					font-family: PingFang SC;
@@ -92,6 +100,18 @@ export default {};
 					height: 0.13rem;
 					// background:red;
 				}
+			}
+			.please-login{
+				margin-top:0.02rem;
+				display:flex;
+				align-items:flex-end;
+				height:0.5rem;
+				width:0.79rem;
+				font-size:0.165rem;
+				font-family:PingFang SC;
+				font-weight:500;
+				color:rgba(204,228,255,1);
+				// background:pink;
 			}
 		}
 	}
